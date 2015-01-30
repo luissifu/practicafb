@@ -69,4 +69,5 @@ btn.addEventListener("click", function() {
   else console.log("Invalid");
 
   text.value = ""
+  text.focus()
 })
