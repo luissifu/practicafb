@@ -53,3 +53,8 @@ function create_post(content) {
   var wall = document.getElementById("wall")
   wall.appendChild(post)
 }
+
+var btn = document.getElementById("btn")
+btn.addEventListener("click", function() {
+  create_post("Hello")
+})
