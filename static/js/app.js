@@ -1,3 +1,7 @@
+function validate_comment(comment) {
+  return true
+}
+
 function create_post(content) {
   var post = document.createElement("div")
   post.setAttribute("class","post");
@@ -56,5 +60,9 @@ function create_post(content) {
 
 var btn = document.getElementById("btn")
 btn.addEventListener("click", function() {
-  create_post("Hello")
+  var text = document.getElementById("text").value
+  if (validate_comment(text))
+  {
+    create_post(text)
+  }
 })
