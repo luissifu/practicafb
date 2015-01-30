@@ -1,5 +1,6 @@
 function validate_comment(comment) {
-  return true
+  var re = /[a-zA-Z0-9]+$/
+  return re.test(comment)
 }
 
 function create_post(content) {
@@ -60,9 +61,12 @@ function create_post(content) {
 
 var btn = document.getElementById("btn")
 btn.addEventListener("click", function() {
-  var text = document.getElementById("text").value
-  if (validate_comment(text))
+  var text = document.getElementById("text")
+  if (validate_comment(text.value))
   {
-    create_post(text)
+    create_post(text.value)
   }
+  else console.log("Invalid");
+
+  text.value = ""
 })
