@@ -35,6 +35,7 @@ function create_post(content) {
   var lcom = document.createElement("a")
   var lcom_txt = document.createTextNode("Comment ")
   lcom.setAttribute("href","#");
+  lcom.setAttribute("title","Leave a Comment");
   lcom.appendChild(lcom_txt)
 
   var like = document.createElement("a")
@@ -44,6 +45,7 @@ function create_post(content) {
     if (text.data == "Like")
     {
       text.data = "Unlike"
+      this.setAttribute("title","Unlike this comment");
     }
     else
     {
@@ -51,6 +53,7 @@ function create_post(content) {
     }
   })
   like.setAttribute("href","#");
+  like.setAttribute("title","Like this comment");
   like.appendChild(like_txt)
 
   inte.appendChild(time)
@@ -67,7 +70,7 @@ function create_post(content) {
   post.appendChild(cont)
 
   var wall = document.getElementById("wall")
-  wall.appendChild(post)
+  wall.insertBefore(post, wall.firstChild)
 }
 
 var btn = document.getElementById("btn")
