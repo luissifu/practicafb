@@ -1,6 +1,6 @@
 
 function validate_comment(comment) {
-  var re = /[a-zA-Z0-9]+$/
+  var re = /[a-zA-Z0-9:;].*$/
   return re.test(comment)
 }
 
