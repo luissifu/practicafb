@@ -1,9 +1,12 @@
+
 function validate_comment(comment) {
   var re = /[a-zA-Z0-9]+$/
   return re.test(comment)
 }
 
 function create_post(content) {
+  var dtime = new Date()
+
   var post = document.createElement("div")
   post.setAttribute("class","post");
 
@@ -28,8 +31,21 @@ function create_post(content) {
   inte.setAttribute("class","interactions");
 
   var time = document.createElement("span")
-  var time_txt = document.createTextNode("x minutes ago ")
   time.setAttribute("class","time");
+
+  var hidden_time = document.createElement("span")
+  var hid_txt = document.createTextNode("" + dtime.getTime())
+  hidden_time.setAttribute("class","hidden")
+  hidden_time.appendChild(hid_txt)
+
+  var display_time = document.createElement("span")
+  var dis_txt = document.createTextNode("0")
+  display_time.setAttribute("class","display")
+  display_time.appendChild(dis_txt)
+
+  var time_txt = document.createTextNode(" minutes ago ")
+  time.appendChild(hidden_time)
+  time.appendChild(display_time)
   time.appendChild(time_txt)
 
   var lcom = document.createElement("a")
@@ -79,9 +95,29 @@ btn.addEventListener("click", function() {
   if (validate_comment(text.value))
   {
     create_post(text.value)
+    update_times()
   }
   else console.log("Invalid");
 
   text.value = ""
   text.focus()
 })
+
+function update_times() {
+  var old_times = document.getElementsByClassName("hidden")
+  var new_times = document.getElementsByClassName("display")
+
+  for (var i = 0; i < old_times.length; i++)
+  {
+    var old_t = parseInt(old_times[i].firstChild.data)
+    var new_t = get_time_ago(old_t)
+    new_times[i].firstChild.data = new_t
+  }
+}
+
+function get_time_ago(old_time) {
+  var dtime = new Date()
+  var new_time = dtime.getTime()
+  var delta_time = new_time - old_time
+  return Math.floor(delta_time/60000)
+}
