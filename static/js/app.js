@@ -11,7 +11,7 @@ function create_post(content) {
   foto.setAttribute("class","foto-big");
 
   var img = document.createElement("img")
-  img.setAttribute("src","");
+  img.setAttribute("src","static/img/pic.png");
 
   var cont = document.createElement("div")
   cont.setAttribute("class","post-content");
@@ -39,6 +39,17 @@ function create_post(content) {
 
   var like = document.createElement("a")
   var like_txt = document.createTextNode("Like")
+  like.addEventListener("click", function() {
+    var text = this.firstChild
+    if (text.data == "Like")
+    {
+      text.data = "Unlike"
+    }
+    else
+    {
+      text.data = "Like"
+    }
+  })
   like.setAttribute("href","#");
   like.appendChild(like_txt)
 

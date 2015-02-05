@@ -124,3 +124,8 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.foto-small {
+    width: 30px;
+    height: 30px;
+}
