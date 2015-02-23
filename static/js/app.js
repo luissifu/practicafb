@@ -101,9 +101,11 @@ function update_times() {
   }
 }
 
-function get_time_ago(old_time) {
-  var dtime = new Date()
-  var new_time = dtime.getTime()
+function get_time_ago(old_t) {
+  var old_time = Date.parse(old_t);
+  var new_time = new Date().getTime()
+  console.log(old_time)
+  console.log(new_time)
   var delta_time = new_time - old_time
   return Math.floor(delta_time/60000)
 }
@@ -138,6 +140,7 @@ btn.addEventListener("click", function() {
   }
   text.value = ""
   text.focus()
+  update_times()
 })
 
 function on_doc_ready() {
