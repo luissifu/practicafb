@@ -1,6 +1,6 @@
 <?php
 require "/../php/connection.php";
-$query = "SELECT * FROM Post";
+$query = "SELECT u.name as user_name, p.post, p.created_at FROM Post p, User u WHERE p.user_id = u.id";
 $result = mysqli_query($connection, $query);
 $response = array();
 

@@ -116,7 +116,7 @@ function post_content(content) {
       if (xmlhttp.status == 200) 
       {
         var json_response = JSON.parse(xmlhttp.responseText);
-        create_post(json_response.post, json_response.user_id, json_response.created_at);
+        create_post(json_response.post, json_response.user_name, json_response.created_at);
       }
       else
       {
@@ -148,7 +148,7 @@ function on_doc_ready() {
       var json_response = JSON.parse(xmlhttp.responseText);
       for (var i = 0; i < json_response.length; i++)
       {
-        create_post(json_response[i].post, json_response[i].user_id, json_response[i].created_at);
+        create_post(json_response[i].post, json_response[i].user_name, json_response[i].created_at);
       }
     }
   }
