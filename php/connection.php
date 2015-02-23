@@ -2,7 +2,11 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$connection = mysqli_connect($dbhost, $dbuser, $dbpass);
-if (!mysqli_select_db('practicafb')
-  echo "error";
+$dbname = 'practicafb';
+
+$connection = new mysqli($dbhost, $dbuser, $dbpass);
+if (!mysqli_select_db($connection, $dbname))
+{
+  echo "Error" . mysqli_error();
+}
 ?>

@@ -4,7 +4,7 @@ function validate_comment(comment) {
   return re.test(comment)
 }
 
-function create_post(content) {
+function create_post(content, username, timestamp) {
   var dtime = new Date()
 
   var post = document.createElement("div")
@@ -20,7 +20,7 @@ function create_post(content) {
   cont.setAttribute("class","post-content");
 
   var name = document.createElement("h3")
-  var name_txt = document.createTextNode("Luis Sifuentes")
+  var name_txt = document.createTextNode(username)
   name.appendChild(name_txt)
 
   var comm = document.createElement("p")
@@ -34,7 +34,7 @@ function create_post(content) {
   time.setAttribute("class","time");
 
   var hidden_time = document.createElement("span")
-  var hid_txt = document.createTextNode("" + dtime.getTime())
+  var hid_txt = document.createTextNode(timestamp)
   hidden_time.setAttribute("class","hidden")
   hidden_time.appendChild(hid_txt)
 
@@ -89,20 +89,6 @@ function create_post(content) {
   wall.insertBefore(post, wall.firstChild)
 }
 
-var btn = document.getElementById("btn")
-btn.addEventListener("click", function() {
-  var text = document.getElementById("text")
-  if (validate_comment(text.value))
-  {
-    create_post(text.value)
-    update_times()
-  }
-  else console.log("Invalid");
-
-  text.value = ""
-  text.focus()
-})
-
 function update_times() {
   var old_times = document.getElementsByClassName("hidden")
   var new_times = document.getElementsByClassName("display")
@@ -121,3 +107,53 @@ function get_time_ago(old_time) {
   var delta_time = new_time - old_time
   return Math.floor(delta_time/60000)
 }
+
+function post_content(content) {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4) 
+    {
+      if (xmlhttp.status == 200) 
+      {
+        var json_response = JSON.parse(xmlhttp.responseText);
+        create_post(json_response.post, json_response.user_id, json_response.created_at);
+      }
+      else
+      {
+        console.log(xmlhttp.responseText)
+      }
+    }
+  }
+  xmlhttp.open("POST", "posts/new.php", true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("post=" + content);
+}
+
+var btn = document.getElementById("btn")
+btn.addEventListener("click", function() {
+  var text = document.getElementById("text")
+  if (validate_comment(text.value))
+  {
+    post_content(text.value);
+  }
+  text.value = ""
+  text.focus()
+})
+
+function on_doc_ready() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+    {
+      var json_response = JSON.parse(xmlhttp.responseText);
+      for (var i = 0; i < json_response.length; i++)
+      {
+        create_post(json_response[i].post, json_response[i].user_id, json_response[i].created_at);
+      }
+    }
+  }
+  xmlhttp.open("GET", "posts/all.php", true);
+  xmlhttp.send();
+}
+
+on_doc_ready();
