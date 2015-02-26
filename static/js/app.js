@@ -13,6 +13,9 @@ function post_content(content) {
       {
         var json_response = JSON.parse(xmlhttp.responseText);
         create_post(json_response.post, json_response.user_name, json_response.created_at);
+        var text = document.getElementById("text")
+        text.value = ""
+        text.focus()
       }
       else
       {
@@ -32,9 +35,6 @@ btn.addEventListener("click", function() {
   {
     post_content(text.value);
   }
-  text.value = ""
-  text.focus()
-  update_times()
 })
 
 function on_doc_ready() {
@@ -54,3 +54,4 @@ function on_doc_ready() {
 }
 
 on_doc_ready();
+auto_update_func = setInterval(function() { update_times() }, 60*1000);

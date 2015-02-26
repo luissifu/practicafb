@@ -1,8 +1,7 @@
 <?php
-
 if ($_POST && isset($_POST['post']))
 {
-  require "/../php/connection.php";
+  require_once "/../php/connection.php";
 
   $post_content = $_POST['post'];
 

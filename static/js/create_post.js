@@ -32,12 +32,20 @@ function create_post(content, username, timestamp) {
   hidden_time.setAttribute("class","hidden")
   hidden_time.appendChild(hid_txt)
 
+  var time_num = get_time_ago(parseIsoDatetime(timestamp))
+  var time_ago = " minutes ago "
+  if (time_num > 60)
+  {
+    time_num = Math.floor(time_num / 60)
+    time_ago = " hours ago "
+  }
+
   var display_time = document.createElement("span")
-  var dis_txt = document.createTextNode("0")
+  var dis_txt = document.createTextNode(time_num)
   display_time.setAttribute("class","display")
   display_time.appendChild(dis_txt)
 
-  var time_txt = document.createTextNode(" minutes ago ")
+  var time_txt = document.createTextNode(time_ago)
   time.appendChild(hidden_time)
   time.appendChild(display_time)
   time.appendChild(time_txt)

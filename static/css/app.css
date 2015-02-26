@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  background: #E9EAED;
 }
 
 .nav-bar {
@@ -39,23 +40,28 @@ body {
   margin-top: 40px;
   width: 80%;
   padding-top: 20px;
-  padding-left: 10%;
+  margin-left: 10%;
+  padding: 10px;
 }
 
 .messages {
   position: relative;
   height: 80px;
   margin-bottom: 10px;
+  background: #F6F7F8;
+  border: #E9EAED 1px solid;
 }
 
 .messages textarea {
-  width: 100%;
+  width: 99.9%;
   display: block;
 }
 
 .post {
-  width: 80%;
+  width: 100%;
   margin-top: 10px;
+  background: #fff;
+  padding: 5px;
 }
 
 .foto-big {
@@ -73,7 +79,7 @@ body {
   height: 100px;
   display: inline-block;
   padding-left: 10px;
-  position: relative
+  position: relative;
 }
 
 .post-content h3 {
@@ -86,11 +92,12 @@ body {
   margin-top: 5px;
 }
 
-.interactions {
+.post .interactions {
   position: absolute;
   bottom: 2px;
   width: 300px;
   height: 20px;
+  border: #E9EAED;
 }
 
 .time {
@@ -106,6 +113,7 @@ button {
 }
 
 .primary {
+  margin-top: 2px;
   color: #fff;
   background-color: #3b5998;
   border-color: #435A8B #3C5488 #334C83;
@@ -131,11 +139,27 @@ button {
 }
 
 .wall {
-    overflow: auto;
     height: 600px;
     max-height: 600px;
 }
 
 .hidden {
     display: none;
+}
+
+.alert {
+    /* display: none; */
+    background: #ffa79e;
+    border: #fb0c06 solid 1px;
+    color: #fb0c06;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.alert-content {
+    width: 90%;
+}
+
+.alert-button {
+    margin-top: -18px;   
 }
