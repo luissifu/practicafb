@@ -5,13 +5,11 @@ if (!$error)
 {
 
 $response;
-if ($_POST && isset($_POST['post']))
+if ($_POST && isset($_POST['like']) isset($_POST['id']))
 {
-  
+  $post_content = $_POST['like'];
 
-  $post_content = $_POST['post'];
-
-  $query = "INSERT INTO Post (post, user_id, created_at) VALUES ('$post_content', 1, NOW());";
+  $query = "UPDATE Post SET liked = $post_like WHERE id = $post_id";
   $result = mysqli_query($connection, $query);
 
   if (!$result)
@@ -22,8 +20,7 @@ if ($_POST && isset($_POST['post']))
   else
   {
     http_response_code(200);
-    $now = date('Y-m-d H:i:s');
-    $response = array("post" => $post_content, "user_name" => "Luis Sifuentes", "created_at" => $now);
+    $response = array("message" => "ok");
   }
 }
 else

@@ -148,7 +148,7 @@ button {
 }
 
 .alert {
-    /* display: none; */
+    display: none;
     background: #ffa79e;
     border: #fb0c06 solid 1px;
     color: #fb0c06;
@@ -162,4 +162,5 @@ button {
 
 .alert-button {
     margin-top: -18px;   
+    cursor: pointer;
 }

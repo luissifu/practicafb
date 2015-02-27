@@ -22,9 +22,9 @@ function update_times() {
 
 function get_time_ago(old_t) {
   var old_time = Date.parse(old_t);
-  var new_time = new Date().getTime() - 6*60*1000
-  var delta_time = new_time - old_time
-  return Math.floor(delta_time/60000)
+  var new_time = new Date().getTime() - 6*60*1000;
+  var delta_time = new_time - old_time;
+  return Math.floor(delta_time/60000) + 6;
 }
 
 function parseIsoDatetime(dtstr) {

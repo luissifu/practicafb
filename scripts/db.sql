@@ -12,6 +12,7 @@ create table Post (
   id int AUTO_INCREMENT,
   post varchar(500),
   user_id int,
+  liked int default 0,
   created_at datetime,
   primary key (id),
   foreign key (user_id) references User(id)

@@ -1,4 +1,5 @@
-function create_post(content, username, timestamp) {
+function create_post(content, username, timestamp, liked) {
+  console.log(liked);
   var dtime = new Date()
 
   var post = document.createElement("div")
@@ -56,8 +57,15 @@ function create_post(content, username, timestamp) {
   lcom.setAttribute("title","Leave a Comment");
   lcom.appendChild(lcom_txt)
 
+  var u_like = "Like"
+  var uu_like = "Like this comment"
+  if (liked != 0)
+  {
+    u_like = "Unlike"
+    uu_like = "Unlike this comment"
+  }
   var like = document.createElement("a")
-  var like_txt = document.createTextNode("Like")
+  var like_txt = document.createTextNode(u_like)
   like.addEventListener("click", function() {
     var text = this.firstChild
     if (text.data == "Like")
@@ -67,11 +75,12 @@ function create_post(content, username, timestamp) {
     }
     else
     {
-      text.data = "Like"
+      text.data = "Like";
+      this.setAttribute("title","Like this comment");
     }
   })
   like.setAttribute("href","#");
-  like.setAttribute("title","Like this comment");
+  like.setAttribute("title",uu_like);
   like.appendChild(like_txt)
 
   inte.appendChild(time)
