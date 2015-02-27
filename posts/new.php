@@ -22,14 +22,24 @@ if ($_POST && isset($_POST['post']))
   else
   {
     http_response_code(200);
-    $now = date('Y-m-d H:i:s');
-    $response = array("post" => $post_content, "user_name" => "Luis Sifuentes", "created_at" => $now);
+    $query = "SELECT u.name as user_name, p.post, p.created_at, p.liked, p.id FROM Post p, User u ORDER BY p.id DESC LIMIT 1";
+    $newest = mysqli_query($connection, $query);
+
+    if (!$newest)
+    {
+      http_response_code(503);
+      $response = array("message" => "Error en el servidor");
+    }
+    else
+    {
+      $response = mysqli_fetch_assoc($newest);
+    }
   }
 }
 else
 {
 	http_response_code(400);
-  $response = array("message" => "Falta mas informacion");
+  $response = array("message" => "Falta mas informacion " . $_POST['post']);
 }
 echo json_encode($response);
 

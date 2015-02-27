@@ -12,7 +12,7 @@ function post_content(content) {
       if (xmlhttp.status == 200)
       {
         var json_response = JSON.parse(xmlhttp.responseText);
-        create_post(json_response.post, json_response.user_name, json_response.created_at, json_response.liked);
+        create_post(json_response.post, json_response.user_name, json_response.created_at, json_response.liked, json_response.id);
         var text = document.getElementById("text")
         text.value = ""
         text.focus()
@@ -66,7 +66,7 @@ function on_doc_ready() {
       var json_response = JSON.parse(xmlhttp.responseText);
       for (var i = 0; i < json_response.length; i++)
       {
-        create_post(json_response[i].post, json_response[i].user_name, json_response[i].created_at, json_response[i].liked);
+        create_post(json_response[i].post, json_response[i].user_name, json_response[i].created_at, json_response[i].liked, json_response[i].id);
       }
     }
   }

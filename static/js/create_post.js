@@ -1,7 +1,4 @@
-function create_post(content, username, timestamp, liked) {
-  console.log(liked);
-  var dtime = new Date()
-
+function create_post(content, username, timestamp, liked, id) {
   var post = document.createElement("div")
   post.setAttribute("class","post");
 
@@ -66,17 +63,16 @@ function create_post(content, username, timestamp, liked) {
   }
   var like = document.createElement("a")
   var like_txt = document.createTextNode(u_like)
+  like.setAttribute("id", "like");
   like.addEventListener("click", function() {
     var text = this.firstChild
     if (text.data == "Like")
     {
-      text.data = "Unlike"
-      this.setAttribute("title","Unlike this comment");
+      like_post(id)
     }
     else
     {
-      text.data = "Like";
-      this.setAttribute("title","Like this comment");
+      unlike_post(id)
     }
   })
   like.setAttribute("href","#");
@@ -95,6 +91,8 @@ function create_post(content, username, timestamp, liked) {
 
   post.appendChild(foto)
   post.appendChild(cont)
+
+  post.setAttribute("id", "post-" + id);
 
   var wall = document.getElementById("wall")
   wall.insertBefore(post, wall.firstChild)

@@ -5,9 +5,10 @@ if (!$error)
 {
 
 $response;
-if ($_POST && isset($_POST['like']) isset($_POST['id']))
+if ($_POST && isset($_POST['like']) && isset($_POST['id']))
 {
-  $post_content = $_POST['like'];
+  $post_like = $_POST['like'];
+  $post_id = $_POST['id'];
 
   $query = "UPDATE Post SET liked = $post_like WHERE id = $post_id";
   $result = mysqli_query($connection, $query);
@@ -26,7 +27,7 @@ if ($_POST && isset($_POST['like']) isset($_POST['id']))
 else
 {
 	http_response_code(400);
-  $response = array("message" => "Falta mas informacion");
+  $response = array("message" => "Falta mas informacion " . $_POST['id'] . "," . $_POST['like']);
 }
 echo json_encode($response);
 

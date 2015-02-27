@@ -3,7 +3,7 @@ require "../php/connection.php";
 
 if (!$error)
 {
-$query = "SELECT u.name as user_name, p.post, p.created_at, p.liked FROM Post p, User u WHERE p.user_id = u.id";
+$query = "SELECT u.name as user_name, p.post, p.created_at, p.liked, p.id FROM Post p, User u WHERE p.user_id = u.id";
 $result = mysqli_query($connection, $query);
 $response = array();
 
